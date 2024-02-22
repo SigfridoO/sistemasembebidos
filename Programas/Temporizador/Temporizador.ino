@@ -7,17 +7,24 @@ byte X[numeroDeX];
 byte Y[numeroDeY];
 
 
-int DI_00 = 35;
-int DI_01 = 34;
-int DI_02 = 39;
-int DI_03 = 36;
 
 
-int DO_00 = 12;
-int DO_01 = 14;
-int DO_02 = 27;
-int DO_03 = 26;
+
+int DI_00 = 36;
+int DI_01 = 39;
+int DI_02 = 34;
+int DI_03 = 35;
+
+
+
+
+
+int DO_00 = 26;
+int DO_01 = 27;
+int DO_02 = 14;
+int DO_03 = 12;
 int DO_04 = 13;
+
 int DO_05 = 2;
 
 void leerPines (void);
@@ -61,6 +68,8 @@ void setup() {
 
   configurarTemporizador();
 
+  Serial.begin(9600);
+
 
 }
 
@@ -73,7 +82,42 @@ void loop() {
   Y[0] = X[0];
   Y[1] = X[1];
   Y[2] = X[2];
-  Y[3] = X[3];
+  
+
+
+
+  TON[0].entrada = !TON[1].salida;
+  actualizarTON(0);
+
+  TON[1].entrada = TON[0].salida;
+  actualizarTON(1);
+
+  Y[4] = !TON[1].salida & TON[0].salida; 
+
+
+
+
+
+  TON[2].entrada = X[3] & !TON[3].salida;
+  actualizarTON(2);
+
+  TON[3].entrada = TON[2].salida;
+  actualizarTON(3);
+
+  Y[3] = X[3] & !TON[3].salida & !TON[2].salida; 
+
+  
+  Serial.print ("\n");
+  Serial.print (TON[0].salida);
+  Serial.print ("\t");
+  Serial.print (TON[0].tiempoActual);
+    
+  Serial.print ("\t");
+  Serial.print (Y[4]);
+  
+
+
+  
 }
 
 
@@ -116,10 +160,10 @@ void actualizarTON (int i) {
 
 void configurarTemporizador () {
 
-  TON[0].tiempo = (unsigned long)1 * 400;
-  TON[1].tiempo = (unsigned long)2 * 200;
+  TON[0].tiempo = (unsigned long)1 * 3000;
+  TON[1].tiempo = (unsigned long)2 * 2000;
 
-  TON[2].tiempo = (unsigned long)1 * 2000;
-  TON[3].tiempo = (unsigned long)1 * 200;
+  TON[2].tiempo = (unsigned long)1 * 3000;
+  TON[3].tiempo = (unsigned long)1 * 3000;
   TON[4].tiempo = (unsigned long)1 * 80;
 }
