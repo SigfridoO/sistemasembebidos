@@ -1,41 +1,41 @@
 
-#define numeroDeX = 16
+#define numeroDeX 16
 byte X[numeroDeX];
 
 
-#define numeroDeY = 16
+#define numeroDeY 16
 byte Y[numeroDeY];
 
 
-int DI_0 = 36;
-int DI_1 = 39;
-int DI_2 = 34;
-int DI_3 = 35;
+int DI_00 = 35;
+int DI_01 = 34;
+int DI_02 = 39;
+int DI_03 = 36;
 
 
-int DO_0 = 12;
-int DO_1 = 14;
-int DO_2 = 27;
-int DO_3 = 26;
-int DO_4 = 13;
-int DO_5 = 2;
+int DO_00 = 12;
+int DO_01 = 14;
+int DO_02 = 27;
+int DO_03 = 26;
+int DO_04 = 13;
+int DO_05 = 2;
 
 void leerPines (void);
 
 
 void setup() {
 
-  pinMode(DI_0, INPUT);
-  pinMode(DI_1, INPUT);
-  pinMode(DI_2, INPUT);
-  pinMode(DI_3, INPUT);
+  pinMode(DI_00, INPUT);
+  pinMode(DI_01, INPUT);
+  pinMode(DI_02, INPUT);
+  pinMode(DI_03, INPUT);
   
-  pinMode(DO_0, OUTPUT);
-  pinMode(DO_1, OUTPUT);
-  pinMode(DO_2, OUTPUT);
-  pinMode(DO_3, OUTPUT);
-  pinMode(DO_4, OUTPUT);
-  pinMode(DO_5, OUTPUT);
+  pinMode(DO_00, OUTPUT);
+  pinMode(DO_01, OUTPUT);
+  pinMode(DO_02, OUTPUT);
+  pinMode(DO_03, OUTPUT);
+  pinMode(DO_04, OUTPUT);
+  pinMode(DO_05, OUTPUT);
 }
 
 
