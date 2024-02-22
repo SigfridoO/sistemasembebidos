@@ -20,6 +20,9 @@ int DO_3 = 26;
 int DO_4 = 13;
 int DO_5 = 2;
 
+void leerPines (void);
+
+
 void setup() {
 
   pinMode(DI_0, INPUT);
@@ -37,21 +40,30 @@ void setup() {
 
 
 void loop() {
-  digitalWrite(DO_0, HIGH);
-  digitalWrite(DO_1, HIGH);
-  digitalWrite(DO_2, HIGH);
-  digitalWrite(DO_3, HIGH);
-  digitalWrite(DO_4, HIGH);
-  digitalWrite(DO_5, HIGH);
+
+  leerPines();
 
 
-  
-  delay(1000);             
-  digitalWrite(DO_0, LOW);
-  digitalWrite(DO_1, LOW);
-  digitalWrite(DO_2, LOW);
-  digitalWrite(DO_3, LOW);
-  digitalWrite(DO_4, LOW);
-  digitalWrite(DO_5, LOW);
-  delay(1000);            
+  Y[0] = X[0];
+  Y[1] = X[1];
+  Y[2] = X[2];
+  Y[3] = X[3];
+}
+
+
+
+void leerPines () {
+
+  X[0] = digitalRead(DI_00);
+  X[1] = digitalRead(DI_01);
+  X[2] = digitalRead(DI_02);
+  X[3] = digitalRead(DI_03);
+
+  digitalWrite(DO_00, Y[0]);
+  digitalWrite(DO_01, Y[1]);
+  digitalWrite(DO_02, Y[2]);
+  digitalWrite(DO_03, Y[3]);
+  digitalWrite(DO_04, Y[4]);
+  digitalWrite(DO_05, Y[5]);
+
 }
