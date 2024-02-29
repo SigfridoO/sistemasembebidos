@@ -14,21 +14,33 @@ struct temporizadorAux {
 void actualizarTON (int);
 
 
+int contador;
+
 void setup() {
   Serial.begin(9600);
-  TON[0].tiempo = (unsigned long)1 * 5000;      // 1 segundo
+  TON[0].tiempo = (unsigned long)1 * 1000;      // 1 segundo
+
+  contador = 0;
 }
 
 void loop() {
-  TON[0].entrada = true;
+  TON[0].entrada = !TON[0].salida;
   actualizarTON(0);
 
-  Serial.print ("TON0");
-  Serial.print("\t");
-  Serial.print(TON[0].tiempoActual);
-  Serial.print("\t");
-  Serial.print(TON[0].salida);
+  if (TON[0].salida) {
+    contador += 1;
+  }
+
+  //Serial.print("contador: ");
+  Serial.print(contador);
   Serial.print("\n");
+
+  //Serial.print ("TON0");
+  //Serial.print("\t");
+  //Serial.print(TON[0].tiempoActual);
+  //Serial.print("\t");
+  //Serial.print(TON[0].salida);
+  //Serial.print("\n");
 
   
 
