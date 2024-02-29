@@ -11,9 +11,19 @@ for port in ports:
 
 puertoSerie = serial.Serial()
 
-puertoSerie.port =""
+puertoSerie.port ="/dev/ttyUSB0"
 puertoSerie.baudrate = 9600
 puertoSerie.parity = serial.PARITY_NONE
-puertoSerie.timeout = 0
+puertoSerie.timeout = 1
 puertoSerie.stopbits = serial.STOPBITS_ONE
 puertoSerie.bytesize = serial.EIGHTBITS
+
+
+
+puertoSerie.open()
+if puertoSerie.is_open:
+    print('El puerto esta abierto')
+    while True:
+        r = puertoSerie.read(1)
+        print(r)
+puertoSerie.close()
