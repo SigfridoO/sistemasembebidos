@@ -32,7 +32,7 @@ void loop() {
   }
 
   //Serial.print("contador: ");
-  Serial.write(contador);
+  //Serial.write(contador);
   //Serial.print("\n");
 
   //Serial.print ("TON0");
@@ -42,7 +42,11 @@ void loop() {
   //Serial.print(TON[0].salida);
   //Serial.print("\n");
 
-  
+   while (Serial.available()) {
+    int caracter = Serial.read();
+    Serial.write(caracter*10);
+    
+   }
 
 }
 
