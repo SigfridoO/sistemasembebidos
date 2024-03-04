@@ -25,5 +25,5 @@ if puertoSerie.is_open:
     print('El puerto esta abierto')
     while True:
         r = puertoSerie.read(1)
-        print(r)
+        print(r, int.from_bytes(r))
 puertoSerie.close()

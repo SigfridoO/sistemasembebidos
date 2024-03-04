@@ -32,8 +32,8 @@ void loop() {
   }
 
   //Serial.print("contador: ");
-  Serial.print(contador);
-  Serial.print("\n");
+  Serial.write(contador);
+  //Serial.print("\n");
 
   //Serial.print ("TON0");
   //Serial.print("\t");
