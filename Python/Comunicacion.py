@@ -29,7 +29,7 @@ if puertoSerie.is_open:
     # while True:
     #     r = puertoSerie.read(1)
     #     print(r, int.from_bytes(r))
-    numero = 8
+    numero = 1
     cadena[0]= numero
     puertoSerie.write(cadena)
     #time.sleep(1)

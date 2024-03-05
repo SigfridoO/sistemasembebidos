@@ -1,3 +1,5 @@
+int DO_00 = 26;
+
 #define  numeroDeTON 16
 struct temporizador {
   byte entrada;
@@ -14,9 +16,13 @@ struct temporizadorAux {
 void actualizarTON (int);
 
 
+
+
 int contador;
 
 void setup() {
+
+  pinMode(DO_00, OUTPUT);
   Serial.begin(9600);
   TON[0].tiempo = (unsigned long)1 * 1000;      // 1 segundo
 
@@ -45,9 +51,19 @@ void loop() {
    while (Serial.available()) {
     int caracter = Serial.read();
     Serial.write(caracter*10);
+
+
     
    }
 
+}
+
+void leerInstruccion(int caracter) {
+      if (caracter == 1) {
+
+      // prender un led
+      digitalWrite(DO_00, 1);
+    }
 }
 
 void actualizarTON (int i) {
