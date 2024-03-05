@@ -1,5 +1,10 @@
+
+
+// ----------  Entradas salidas
 int DO_00 = 26;
 
+
+// ----------  Temporizadores
 #define  numeroDeTON 16
 struct temporizador {
   byte entrada;
@@ -14,6 +19,9 @@ struct temporizadorAux {
 } TON_Aux[numeroDeTON];
 
 void actualizarTON (int);
+
+// ----------  Comunicación
+void leerInstruccion(int);
 
 
 
@@ -50,19 +58,30 @@ void loop() {
 
    while (Serial.available()) {
     int caracter = Serial.read();
-    Serial.write(caracter*10);
-
-
+    //Serial.write(caracter*10);
+    leerInstruccion(caracter);
+      
     
    }
 
 }
 
 void leerInstruccion(int caracter) {
-      if (caracter == 1) {
+      switch (caracter) {
+        case 1:
+          Serial.print("Instruccion 1");
+          break;
 
-      // prender un led
-      digitalWrite(DO_00, 1);
+        case 2:
+          Serial.print("Instruccion 2");
+          break;
+
+        case 3:
+          Serial.print("Instruccion 3");
+          break;
+
+         
+          
     }
 }
 

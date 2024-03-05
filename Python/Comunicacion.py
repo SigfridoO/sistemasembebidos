@@ -29,11 +29,14 @@ if puertoSerie.is_open:
     # while True:
     #     r = puertoSerie.read(1)
     #     print(r, int.from_bytes(r))
-    numero = 1
+    numero = 2
     cadena[0]= numero
+
+    # enviando al microntrontrolador
     puertoSerie.write(cadena)
-    #time.sleep(1)
-    r = puertoSerie.read(1)
+    time.sleep(0.01)
+    # leyendo del microcontrolador
+    r = puertoSerie.read(25)
     print(r, int.from_bytes(r))
 
 puertoSerie.close()
