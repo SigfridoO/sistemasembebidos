@@ -7,7 +7,7 @@ class Ventana(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
 
-        boton = QPushButton()
+        boton = QPushButton("Escribir")
         self.setCentralWidget(boton)
 
 
