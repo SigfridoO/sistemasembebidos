@@ -25,8 +25,30 @@ class Comunicacion:
     def escribir(self):
         pass
 
+    def probarPuerto(self):
+
+        cadena = bytearray(1)
+
+        if self.puertoSerie.is_open:
+            print('El puerto esta abierto')
+            # while True:
+            #     r = self.puertoSerie.read(1)
+            #     print(r, int.from_bytes(r))
+            numero = 2
+            cadena[0]= numero
+
+            # enviando al microntrontrolador
+            self.puertoSerie.write(cadena)
+            time.sleep(0.01)
+            # leyendo del microcontrolador
+            r = self.puertoSerie.read(25)
+            print(r, int.from_bytes(r))
+
 def main():
     comu = Comunicacion("/dev/ttyUSB0", 9600)
+    comu.abrirPuerto()
+    comu.probarPuerto()
+    comu.cerrarPuerto()
 
 if __name__ == "__main__":
     main()
