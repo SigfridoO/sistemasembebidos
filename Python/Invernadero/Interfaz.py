@@ -45,7 +45,7 @@ class Ventana(QMainWindow):
         comu = Comunicacion("/dev/ttyUSB0", 9600)
         comu.abrirPuerto()
         respuesta = comu.enviar_mensaje(int(self.texto.text()))
-        self.etiquetaString.setText(respuesta)
+        self.etiquetaString.setText(respuesta.decode())
         print ('La respuesta recibida es ', respuesta)
 
         comu.cerrarPuerto()
