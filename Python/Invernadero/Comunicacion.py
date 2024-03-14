@@ -25,24 +25,18 @@ class Comunicacion:
     def escribir(self):
         pass
 
-    def enviar_mensaje():
+    def enviar_mensaje(self, instruccion):
         cadena = bytearray(1)
         r = None
         if self.puertoSerie.is_open:
-            print('El puerto esta abierto')
-            # while True:
-            #     r = self.puertoSerie.read(1)
-            #     print(r, int.from_bytes(r))
-            numero = 2
-            cadena[0]= numero
-
+            
+            cadena[0]= instruccion
             # enviando al microntrontrolador
             self.puertoSerie.write(cadena)
             time.sleep(0.01)
             # leyendo del microcontrolador
             r = self.puertoSerie.read(8)
             print(r, int.from_bytes(r))
-        
         return r    
 
     def probarPuerto(self):

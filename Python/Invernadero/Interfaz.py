@@ -12,8 +12,8 @@ class Ventana(QMainWindow):
         super().__init__()
 
         boton = QPushButton("Escribir")
-        texto = QLineEdit()
-        etiquetaString = QLabel()
+        self.texto = QLineEdit()
+        self.etiquetaString = QLabel()
         etiquetaHex = QLabel()
 
         layoutVertical1 = QVBoxLayout()
@@ -23,16 +23,18 @@ class Ventana(QMainWindow):
         layoutVertical1.addLayout(layoutHorizontal1)
         layoutVertical1.addLayout(layoutHorizontal2)
 
-        layoutHorizontal1.addWidget(texto)
+        layoutHorizontal1.addWidget(self.texto)
         layoutHorizontal1.addWidget(boton)
 
-        layoutHorizontal2.addWidget(etiquetaString)
+        layoutHorizontal2.addWidget(self.etiquetaString)
         layoutHorizontal2.addWidget(etiquetaHex)
 
-        etiquetaString.setStyleSheet(f'background-color: white')
+        self.etiquetaString.setStyleSheet(f'background-color: white')
         etiquetaHex.setStyleSheet(f'background-color: white')
         widget = QWidget()
         widget.setLayout(layoutVertical1)
+
+        
 
         self.setCentralWidget(widget)
         boton.clicked.connect(self.realizar_accion)
@@ -42,7 +44,8 @@ class Ventana(QMainWindow):
 
         comu = Comunicacion("/dev/ttyUSB0", 9600)
         comu.abrirPuerto()
-        respuesta = comu.probarPuerto()
+        respuesta = comu.enviar_mensaje(int(self.texto.text()))
+        self.etiquetaString.setText(respuesta)
         print ('La respuesta recibida es ', respuesta)
 
         comu.cerrarPuerto()
