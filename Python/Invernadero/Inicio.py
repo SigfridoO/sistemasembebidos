@@ -8,11 +8,6 @@ class Inicio(Ventana):
         Ventana.__init__(self)
 
 
-        comu = Comunicacion("/dev/ttyUSB0", 9600)
-        comu.abrirPuerto()
-        comu.probarPuerto()
-        comu.cerrarPuerto()
-
 
 
 
