@@ -121,8 +121,8 @@ const byte PROCESO = 2;
 // Instrucciones para PROCESO
 
 #define ENTRADAS  12
-#define BOTON_CANCELAR 24
-#define LED 25
+#define ENVIAR_STATUS_SENALES 24
+#define CONFIGURAR_SENALES_DIGITALES 25
 #define TEMPERATURA 56
 
 #define INSTRUCCION_MOSTRAR_VERSION 58
@@ -153,7 +153,7 @@ float analog_temperatura = 0;
 
 
 // ----------  EEPROM
-#define memoriaBase 0
+#define tamanioMemoriaEEPROM 512
 
 
 void setup() {
@@ -174,7 +174,7 @@ void setup() {
 
   configurarTemporizador();
 
-  EEPROM.begin(512);
+  EEPROM.begin(tamanioMemoriaEEPROM);
 
   Serial.begin(9600);
 
@@ -193,13 +193,10 @@ void loop() {
   leerInstruccionesDeBufferSerial(bufferLectura, &bufferIndice, bufferUltimaInstruccionByte, &tamanioBufferUltimaInstruccion);
 
 
-
   Y[0] = X[0];
   Y[1] = X[1];
   Y[2] = X[2];
   Y[3] = X[3];
-
-
 
   TON[0].entrada = !TON[1].salida;
   actualizarTON(0);
@@ -528,14 +525,12 @@ int obtenerListaDeInstrucciones () {
 
   if (tipoDeInstruccion == PROCESO) {
     switch (numeroDeInstruccion) {
-      case LED:
+      case CONFIGURAR_SENALES_DIGITALES:
         configurarSenalesDigitales();
         break;
-      case BOTON_CANCELAR:
-        enviarStatusBotones();
+      case ENVIAR_STATUS_SENALES:
+        enviarStatusSenales();
         break;
-
-
       case TEMPERATURA:
         enviarTemperatura();
         break;
@@ -602,7 +597,7 @@ void configurarSenalesDigitales () {
   }
 }
 
-void enviarStatusBotones () {
+void enviarStatusSenales () {
   byte aux = 0;
   byte num_bytes = 0;
 
@@ -791,5 +786,5 @@ void escribirByteEnMemoria (int direccion, byte numero) {
 }
 
 byte leerByteEnMemoria (int direccion) {
-  return EEPROM.readByte(direccion + memoriaBase);
+  return EEPROM.readByte(direccion);
 }
