@@ -14,6 +14,6 @@ class Inicio(Ventana):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = Inicio()
-    window.show();
+    window.show()
     sys.exit(app.exec())
        
